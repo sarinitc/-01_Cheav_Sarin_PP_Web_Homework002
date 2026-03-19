@@ -12,13 +12,27 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InstructorServiceImpl implements InstructorService {
     private final InstructorRepository instructorRepository;
+
     @Override
-    public List<Instructor> getAllInstructor() {
-        return instructorRepository.findAllInstructor();
+    public List<Instructor> findAllInstructorWithPagination(Integer page, Integer size) {
+        return List.of();
     }
 
     @Override
-    public List<Instructor> findAllInstructor() {
-        return List.of();
+    public Instructor getInstructorById(Integer instructorId) {
+        return instructorRepository.getInstructorById(instructorId);
     }
+
+    @Override
+    public List<Instructor> getAllInstructor(Integer page, Integer size) {
+        return instructorRepository.findAllInstructorWithPagination(page, size);
+    }
+
+    @Override
+    public List<Instructor> getAllStudents(Integer page, Integer size) {
+        return null;
+//        return instructorRepository.findInstructorById(instructor);
+    }
+
+
 }

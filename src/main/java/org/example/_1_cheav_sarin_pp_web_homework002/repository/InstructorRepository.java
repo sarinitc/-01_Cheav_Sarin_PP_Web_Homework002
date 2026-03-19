@@ -1,14 +1,27 @@
 package org.example._1_cheav_sarin_pp_web_homework002.repository;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
+import org.example._1_cheav_sarin_pp_web_homework002.model.Student;
 
 import java.util.List;
 
 @Mapper
 public interface InstructorRepository {
-    @Select("SELECT * FROM instructors")
+    @Results(id = "instructorMapper", value = {
+            @Result(property = "instructorId", column = "instructor_id"),
+            @Result(property = "instructorName", column = "instructor_name"),
+            @Result(property = "phoneNumber", column = "phone_number"),
 
-    List<Instructor> findAllInstructor();
+    })
+    @Select("SELECT* FROM instructors LIMIT #{size} OFFSET (#{page} -1 )* #{size}")
+    List<Instructor> findAllInstructorWithPagination(Integer page, Integer size);
+
+    @ResultMap("instructorMapper")
+    @Select("""
+            SELECT * FROM instructors
+            WHERE instructor_id = #{instructorId}
+            """)
+
+    Instructor getInstructorById(Integer instructorId);
 }

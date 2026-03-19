@@ -59,7 +59,7 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
     @PostMapping("/students")
-    public Student createStudent(@RequestBody StudentRequest studentRequest){
+    public Student createStudent( StudentRequest studentRequest){
 
          return studentService.createStudent(studentRequest);
     }

@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Instructor {
 
-    private Integer instructor_id;
-    private String instructor_name;
+    private Integer instructorId;
+    private String instructorName;
     private String email;
 
 }
