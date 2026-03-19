@@ -15,7 +15,9 @@ import java.time.LocalDateTime;
 
 
 public class ApiResponse<T> {
-    private LocalDateTime timestamp;
+    private Boolean success;
+    private  String status;
     private String message;
     private  T payload;
+    private LocalDateTime timestamp;
 }

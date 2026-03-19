@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
-    private String student_name;
+    private  int studentId;
+    private String studentName;
     private String email;
-    private String phone_number;
+    private String phoneNumber;
 
 }
