@@ -3,6 +3,8 @@ package org.example._1_cheav_sarin_pp_web_homework002.repository;
 import org.apache.ibatis.annotations.*;
 import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
 import org.example._1_cheav_sarin_pp_web_homework002.model.Student;
+import org.example._1_cheav_sarin_pp_web_homework002.model.request.InstructorRequest;
+import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ public interface InstructorRepository {
             @Result(property = "phoneNumber", column = "phone_number"),
 
     })
-    @Select("SELECT* FROM instructors LIMIT #{size} OFFSET (#{page} -1 )* #{size}")
+    @Select("SELECT * FROM instructors LIMIT #{size} OFFSET (#{page} -1 )* #{size}")
     List<Instructor> findAllInstructorWithPagination(Integer page, Integer size);
 
     @ResultMap("instructorMapper")
@@ -22,6 +24,16 @@ public interface InstructorRepository {
             SELECT * FROM instructors
             WHERE instructor_id = #{instructorId}
             """)
-
     Instructor getInstructorById(Integer instructorId);
+
+
+    @ResultMap("instructorMapper")
+    @Select("""
+        INSERT INTO instructors (instructor_name, email)
+        VALUES (#{instructorName}, #{email})
+        RETURNING *;
+        """)
+    Instructor saveINstructor(InstructorRequest instructorRequest);
 }
+
+

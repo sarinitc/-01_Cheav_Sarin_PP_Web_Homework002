@@ -33,15 +33,15 @@ public class StudentController {
                  .build();
          return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-    @GetMapping("/{student_Id}")
-    public ResponseEntity<ApiResponse<Student>> getStudentById(@PathVariable Integer student_Id) {
-        Student student = studentService.getStudentById(student_Id);
+    @GetMapping("/{student_id}")
+    public ResponseEntity<ApiResponse<Student>> getStudentById(@PathVariable Integer student_id) {
+        Student student = studentService.getStudentById(student_id);
 
         if (student != null) {
             ApiResponse<Student> response = ApiResponse.<Student>builder()
                     .success(true)
                     .status("200")
-                    .message("Student fetch by ID " + student_Id + " Successfully")
+                    .message("Student fetch by ID " + student_id + " Successfully")
                     .payload(student)
                     .timestamp(LocalDateTime.now())
                     .build();
@@ -51,7 +51,7 @@ public class StudentController {
         ApiResponse<Student> response = ApiResponse.<Student>builder()
                 .success(false)
                 .status("404")
-                .message("Student fetch by ID " + student_Id + " not found")
+                .message("Student fetch by ID " + student_id + " not found")
                 .payload(null)
                 .timestamp(LocalDateTime.now())
                 .build();

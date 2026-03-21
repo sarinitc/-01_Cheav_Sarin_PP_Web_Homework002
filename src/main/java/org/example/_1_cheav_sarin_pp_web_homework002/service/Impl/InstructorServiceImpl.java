@@ -2,6 +2,7 @@ package org.example._1_cheav_sarin_pp_web_homework002.service.Impl;
 
 import lombok.RequiredArgsConstructor;
 import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
+import org.example._1_cheav_sarin_pp_web_homework002.model.request.InstructorRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.repository.InstructorRepository;
 import org.example._1_cheav_sarin_pp_web_homework002.service.InstructorService;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class InstructorServiceImpl implements InstructorService {
     public List<Instructor> getAllStudents(Integer page, Integer size) {
         return null;
 //        return instructorRepository.findInstructorById(instructor);
+    }
+
+    @Override
+    public Instructor createInstructor(InstructorRequest instructorRequest) {
+        return  instructorRepository.saveINstructor(instructorRequest);
     }
 
 

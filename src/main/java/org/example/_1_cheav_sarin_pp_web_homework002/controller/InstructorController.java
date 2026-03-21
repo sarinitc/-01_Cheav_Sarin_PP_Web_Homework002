@@ -1,7 +1,9 @@
 package org.example._1_cheav_sarin_pp_web_homework002.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
+import org.example._1_cheav_sarin_pp_web_homework002.model.request.InstructorRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.response.ApiResponse;
 import org.example._1_cheav_sarin_pp_web_homework002.service.InstructorService;
 import org.springframework.http.HttpStatus;
@@ -59,4 +61,21 @@ public class InstructorController {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+    @PostMapping
+    public ResponseEntity<ApiResponse<Instructor>> createInstructor(@RequestBody InstructorRequest instructorRequest) {
+        Instructor instructor = instructorService.createInstructor(instructorRequest);
+
+        ApiResponse<Instructor> response = ApiResponse.<Instructor>builder()
+                .success(true)
+                .status("201")
+                .message("Instructor created successfully")
+                .payload(instructor)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
 }
+
+
